@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="64dp"
+        android:layout_height="58dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="113dp"
+        android:layout_height="59dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="monospace"
+        android:gravity="center_vertical"
+        android:text="Test"
+        android:textColor="#000000"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="201dp"
+        android:layout_height="59dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="monospace"
+        android:gravity="center_vertical"
+        android:text="Test"
+        android:textColor="#888888"
+        android:textSize="22dp"
+        android:textStyle="italic" />
+
+</LinearLayout>
