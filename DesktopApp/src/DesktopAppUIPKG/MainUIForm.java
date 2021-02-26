@@ -1,5 +1,7 @@
 package DesktopAppUIPKG;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.*;
@@ -16,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -81,34 +84,62 @@ public class MainUIForm extends JFrame {
                     FolderPath_TXT.setText("");
                 }*/
 
+
+
                 JFileChooser file_chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
 //                file_chooser.setAcceptAllFileFilterUsed(false);
 //                FileFilter all_files_filter=file_chooser.getAcceptAllFileFilter();
-                FileFilter file_filter = new FileNameExtensionFilter("PowerPoint Files", "ppt", "pptx");
+//                FileNameExtensionFilter file_filter = new FileNameExtensionFilter("PowerPoint Files", "ppt", "pptx");
 //                file_chooser.removeChoosableFileFilter(all_files_filter);
-                file_chooser.addChoosableFileFilter(file_filter);
+//                file_chooser.addChoosableFileFilter(file_filter);
 //                file_chooser.addChoosableFileFilter(all_files_filter);
-                file_chooser.setFileFilter(file_filter);
+//                file_chooser.setFileFilter(file_filter);
                 file_chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                int file_chooser_value = file_chooser.showOpenDialog(null);
+                               int file_chooser_value = file_chooser.showOpenDialog(null);
                     String file_path=file_chooser.getSelectedFile().getAbsolutePath();
                     FolderPath_TXT.setText(file_path);
                     File file=new File(file_path);
                     File[] Array_Of_files=file.listFiles();
                     for(File f:Array_Of_files){
                         if(f.isDirectory()){
-//                            System.out.println("directory---->"+f.getName());
                             return;
                         }else if(f.isFile()){
-                            System.out.println("file ----->"+f.getName());
+                            if(f.getName().endsWith(".ppt")||f.getName().endsWith(".pptx")) {
+                                System.out.println(f.getName());
+                            }
+
+
+
                         }
                     }
 
 
+               /* JFileChooser file_chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                file_chooser.resetChoosableFileFilters();
+                file_chooser.addChoosableFileFilter(new FileFilter() {
+                    @Override
+                    public boolean accept(File f) {
+                        if(f.isDirectory()) {
 
+                            return true ;
+                        }
+                        else if(f.isFile()){
+                            String file_name=f.getName();
+                            return file_name.endsWith(".ppt")||file_name.endsWith(".pptx");
+                        }
+                        return true;
+                    }
 
-
+                    @Override
+                    public String getDescription() {
+                        return null;
+                    }
+                });
+                file_chooser.setFileSelectionMode(file_chooser.FILES_AND_DIRECTORIES);
+                int file_chooser_value = file_chooser.showOpenDialog(null);
+                String file_path=file_chooser.getSelectedFile().getAbsolutePath();
+                FolderPath_TXT.setText(file_path);*/
 
             /*    JFileChooser file_chooser=new JFileChooser();
                 FileFilter all_files_filter=file_chooser.getAcceptAllFileFilter();
@@ -125,20 +156,12 @@ public class MainUIForm extends JFrame {
 
 
 
-//    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-//
-//        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                MainUIForm mainUIForm = new MainUIForm();
-//                mainUIForm.setVisible(true);
-//            }
-//        });
-//    }
+
             }
         });
+
+
+
 
         Start_Stop_LBL.addMouseListener(new MouseAdapter() {
             @Override
@@ -167,6 +190,8 @@ public class MainUIForm extends JFrame {
 
 
     }
+
+
 
 
 
