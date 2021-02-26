@@ -12,12 +12,13 @@ import android.widget.TextView;
 public class MenuAdapter extends BaseAdapter {
 
     private Context mContext;
-    private RowItem[]  Title;
+    private RowItem[] Title;
+    private int Icon;
 
-    public MenuAdapter(Context context, RowItem[] text1) {
+    public MenuAdapter(Context context, RowItem[] text1, int icon) {
         mContext = context;
         Title = text1;
-
+        Icon = icon;
     }
 
     public int getCount() {
@@ -48,7 +49,7 @@ public class MenuAdapter extends BaseAdapter {
         desc = (TextView) row.findViewById(R.id.txtDesc);
         title.setText(Title[position].title);
         desc.setText(Title[position].description);
-        i1.setImageResource(R.drawable.ic_powerpoint);
+        i1.setImageResource(Icon);
 
         return (row);
     }
