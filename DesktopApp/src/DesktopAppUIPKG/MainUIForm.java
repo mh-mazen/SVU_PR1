@@ -85,7 +85,6 @@ public class MainUIForm extends JFrame {
                 }*/
 
 
-
                 JFileChooser file_chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
 //                file_chooser.setAcceptAllFileFilterUsed(false);
@@ -96,23 +95,22 @@ public class MainUIForm extends JFrame {
 //                file_chooser.addChoosableFileFilter(all_files_filter);
 //                file_chooser.setFileFilter(file_filter);
                 file_chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                               int file_chooser_value = file_chooser.showOpenDialog(null);
-                    String file_path=file_chooser.getSelectedFile().getAbsolutePath();
-                    FolderPath_TXT.setText(file_path);
-                    File file=new File(file_path);
-                    File[] Array_Of_files=file.listFiles();
-                    for(File f:Array_Of_files){
-                        if(f.isDirectory()){
-                            return;
-                        }else if(f.isFile()){
-                            if(f.getName().endsWith(".ppt")||f.getName().endsWith(".pptx")) {
-                                System.out.println(f.getName());
-                            }
-
-
-
+                int file_chooser_value = file_chooser.showOpenDialog(null);
+                String file_path = file_chooser.getSelectedFile().getAbsolutePath();
+                FolderPath_TXT.setText(file_path);
+                File file = new File(file_path);
+                File[] Array_Of_files = file.listFiles();
+                for (File f : Array_Of_files) {
+                    if (f.isDirectory()) {
+                        return;
+                    } else if (f.isFile()) {
+                        if (f.getName().endsWith(".ppt") || f.getName().endsWith(".pptx")) {
+                            System.out.println(f.getName());
                         }
+
+
                     }
+                }
 
 
                /* JFileChooser file_chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -155,18 +153,15 @@ public class MainUIForm extends JFrame {
                 }*/
 
 
-
-
             }
         });
-
-
 
 
         Start_Stop_LBL.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                Start_Stop_LBL.setIcon(new ImageIcon(getClass().getResource("/icons/button_stop.png")));
       /*      TopSelectorPanel.remove(Start_Stop_LBL);
              Start_Stop_LBL=new JLabel(new ImageIcon(image));
              TopSelectorPanel.add(Start_Stop_LBL);
@@ -190,9 +185,6 @@ public class MainUIForm extends JFrame {
 
 
     }
-
-
-
 
 
 }

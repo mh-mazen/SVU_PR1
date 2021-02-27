@@ -62,7 +62,7 @@
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="DesktopAppUIPKG/Icons/icons8_upload_to_the_cloud_64px.png"/>
+                  <icon value="Icons/icons8_upload_to_the_cloud_64px.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -71,7 +71,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="DesktopAppUIPKG/Icons/icons8_microsoft_powerpoint_64px.png"/>
+                  <icon value="Icons/icons8_microsoft_powerpoint_64px.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -80,7 +80,7 @@
                   <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="DesktopAppUIPKG/Icons/icons8_delete_64px_2.png"/>
+                  <icon value="Icons/icons8_delete_64px_2.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -89,7 +89,7 @@
                   <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="DesktopAppUIPKG/Icons/button_browse.png"/>
+                  <icon value="Icons/button_browse.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -98,7 +98,7 @@
                   <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="DesktopAppUIPKG/Icons/button_start.png"/>
+                  <icon value="Icons/button_start.png"/>
                   <text value=""/>
                 </properties>
               </component>
