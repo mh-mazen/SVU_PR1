@@ -14,7 +14,7 @@
       <color color="-4520704"/>
     </border>
     <children>
-      <grid id="e25ad" binding="TopPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="e25ad" binding="TopPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -26,7 +26,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="342c0" binding="TopSelectorPanel" layout-manager="GridLayoutManager" row-count="3" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="342c0" binding="TopSelectorPanel" layout-manager="GridLayoutManager" row-count="3" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -39,7 +39,7 @@
             <children>
               <component id="aae82" class="javax.swing.JLabel" binding="FolderSelector_LBL">
                 <constraints>
-                  <grid row="0" column="1" row-span="2" col-span="8" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="2" col-span="9" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Courier New" size="16" style="1"/>
@@ -77,10 +77,10 @@
               </component>
               <component id="15d45" class="javax.swing.JLabel" binding="Exit_LBL">
                 <constraints>
-                  <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="Icons/icons8_delete_64px_2.png"/>
+                  <icon value="Icons/icons8_shutdown_35px.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -95,34 +95,20 @@
               </component>
               <component id="88be8" class="javax.swing.JLabel" binding="Start_Stop_LBL">
                 <constraints>
-                  <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="8" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <icon value="Icons/button_start.png"/>
                   <text value=""/>
                 </properties>
               </component>
-            </children>
-          </grid>
-          <grid id="2ac34" binding="MiddlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="5" left="10" bottom="5" right="10"/>
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-14013910"/>
-              <foreground color="-14013910"/>
-            </properties>
-            <border type="none"/>
-            <children>
-              <component id="f3a29" class="javax.swing.JLabel" binding="Information_LBL">
+              <component id="52173" class="javax.swing.JLabel" binding="Minimize_LBL">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <font name="Courier New" size="16" style="1"/>
-                  <foreground color="-394759"/>
-                  <text value="Information:"/>
+                  <icon value="Icons/icons8_minimize_window_35px.png"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
