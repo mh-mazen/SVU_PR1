@@ -1,14 +1,16 @@
 package DesktopAppUIPKG;
 
+import com.sun.security.ntlm.Server;
+
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.io.File;
-
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 
 public class MainUIForm extends JFrame {
@@ -25,9 +27,13 @@ public class MainUIForm extends JFrame {
     private JLabel Exit_LBL;
     private JLabel Browse_LBL;
     private JLabel Start_Stop_LBL;
-    private JTable Connection_Information_TBL;
     private JTextArea Logs_TXT;
     private JLabel Minimize_LBL;
+    private JLabel ServerIP_LBL;
+    private JLabel Port_LBL;
+    private JLabel Status_LBL;
+    private JLabel LastCommand_LBL;
+    private JLabel ServerName_LBL;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -38,9 +44,11 @@ public class MainUIForm extends JFrame {
         setTitle("Server Application");
         setSize(700, 500);
         setLocationRelativeTo(null);
-//      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+     //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+
+
 
 
 
@@ -81,15 +89,23 @@ public class MainUIForm extends JFrame {
             }
         });
 
-
         Start_Stop_LBL.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Start_Stop_LBL.setIcon(new ImageIcon(getClass().getResource("/icons/button_stop.png")));
 
+                InetAddress ip= null;
+                try {
+                    ip = InetAddress.getLocalHost();
+                } catch (UnknownHostException unknownHostException) {
+                    unknownHostException.printStackTrace();
+                }
+                ServerIP_LBL.setText(String.valueOf(ip.getHostAddress()));
+                ServerName_LBL.setText(String.valueOf(ip.getHostName()));
             }
         });
+
 
 
         Minimize_LBL.addMouseListener(new MouseAdapter() {
@@ -100,6 +116,8 @@ public class MainUIForm extends JFrame {
                 // To restore setState(Frame.NORMAL)
             }
         });
+
+
     }
 
 
