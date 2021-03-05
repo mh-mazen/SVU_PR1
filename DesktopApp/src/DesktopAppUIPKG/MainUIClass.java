@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,8 +21,10 @@ public class MainUIClass {
     private BufferedReader in;
 
     public void start(int port) throws IOException, AWTException {
-        serverSocket = new ServerSocket(port);
-        System.out.println(MessageFormat.format("Server Started on IP {0}:{1}", "" , String.valueOf(port)));
+        InetAddress inetAddress = InetAddress.getLocalHost();
+        serverSocket = new ServerSocket(port, 50, inetAddress);
+
+        System.out.println(MessageFormat.format("Server Started on IP {0}:{1}", inetAddress.getHostAddress(), String.valueOf(port)));
         int count = 0;
         while (true) {
             clientSocket = serverSocket.accept();
@@ -41,14 +44,13 @@ public class MainUIClass {
             count++;
         }
     }
+
     public void stop() throws IOException {
         in.close();
         out.close();
         clientSocket.close();
         serverSocket.close();
     }
-
-
 
 
     public static void main(String[] args) throws IOException, AWTException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
@@ -65,10 +67,10 @@ public class MainUIClass {
             }
         });
 
-        MainUIClass main=new MainUIClass();
+        MainUIClass main = new MainUIClass();
         main.start(6666);
 
-        }
-
     }
+
+}
 
