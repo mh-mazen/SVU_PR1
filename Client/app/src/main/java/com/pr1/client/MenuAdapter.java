@@ -1,7 +1,6 @@
 package com.pr1.client;
 
 import android.content.Context;
-import android.service.quicksettings.Tile;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,26 +8,38 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class MenuAdapter extends BaseAdapter {
 
     private Context mContext;
-    private RowItem[] Title;
+    private List<RowItem> Title;
     private int Icon;
 
-    public MenuAdapter(Context context, RowItem[] text1, int icon) {
+    public MenuAdapter(Context context, List<RowItem> text1, int icon) {
         mContext = context;
         Title = text1;
         Icon = icon;
     }
 
+    public void setItems(List<RowItem> items) {
+        this.Title = items;
+    }
+
+    public boolean isEmpty() {
+        if (this.Title != null)
+            return this.Title.isEmpty();
+        return true;
+    }
+
     public int getCount() {
         // TODO Auto-generated method stub
-        return Title.length;
+        return Title.size();
     }
 
     public Object getItem(int arg0) {
         // TODO Auto-generated method stub
-        return null;
+        return Title.get(arg0);
     }
 
     public long getItemId(int position) {
@@ -47,8 +58,8 @@ public class MenuAdapter extends BaseAdapter {
         i1 = (ImageView) row.findViewById(R.id.imgIcon);
         title = (TextView) row.findViewById(R.id.txtTitle);
         desc = (TextView) row.findViewById(R.id.txtDesc);
-        title.setText(Title[position].title);
-        desc.setText(Title[position].description);
+        title.setText(Title.get(position).title);
+        desc.setText(Title.get(position).description);
         i1.setImageResource(Icon);
 
         return (row);

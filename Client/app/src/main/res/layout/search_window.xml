@@ -5,6 +5,25 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ipTextView"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginStart="5dip"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:fontFamily="@font/monoton_regular"
+            android:gravity="fill"
+            android:text="IP:"
+            android:textColor="#8E24AA"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="52dp"
         android:orientation="horizontal">
@@ -27,6 +46,7 @@
             android:layout_width="0dip"
             android:layout_height="38dp"
             android:layout_weight="1"
+            android:backgroundTint="#8E24AA"
             android:ems="15"
             android:fontFamily="@font/hellodenverdisplayregular"
             android:inputType="textPersonName"
@@ -35,8 +55,7 @@
             android:paddingRight="10dip"
             android:paddingBottom="2dip"
             android:radius="5dip"
-            android:text="5555"
-            android:backgroundTint="#8E24AA"
+            android:text="6666"
             android:textColor="#8E24AA"
             android:textSize="26dp" />
 
@@ -62,6 +81,51 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#1DDA00FF" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/serverSearchIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/monoton_regular"
+            android:textColor="#8E24AA"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/server_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noServerError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/monoton_regular"
+            android:text="No Server Found!"
+            android:textColor="#8E24AA"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,20 +140,41 @@
             android:layout_height="fill_parent"
             android:layout_centerInParent="true"
             android:indeterminateDrawable="@drawable/progress"
-            android:visibility="visible" />
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <ListView
-            android:id="@+id/server_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
+        <EditText
+            android:id="@+id/editTextStaticIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/hellodenverdisplayregular"
+            android:inputType="textPersonName"
+            android:text="192.168.1.1:6666"
+            android:textColor="#8E24AA"
+            android:textSize="26sp"/>
+
+        <ImageButton
+            android:id="@+id/serverConnectButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ic_double_right"
+            android:contentDescription="@string/todo"
+            android:onClick="searchServers"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="?attr/selectableItemBackgroundBorderless"
+            android:textColor="#FFF"
+            android:textSize="24sp" />
     </LinearLayout>
 
 </LinearLayout>
