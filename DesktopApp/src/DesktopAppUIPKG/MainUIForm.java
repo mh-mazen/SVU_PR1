@@ -11,6 +11,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainUIForm extends JFrame {
@@ -34,6 +36,7 @@ public class MainUIForm extends JFrame {
     private JLabel Status_LBL;
     private JLabel LastCommand_LBL;
     private JLabel ServerName_LBL;
+    public static List<File> Files;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -44,13 +47,9 @@ public class MainUIForm extends JFrame {
         setTitle("Server Application");
         setSize(700, 500);
         setLocationRelativeTo(null);
-     //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-
-
-
-
 
 
         Exit_LBL.addMouseListener(new MouseAdapter() {
@@ -75,15 +74,14 @@ public class MainUIForm extends JFrame {
                 FolderPath_TXT.setText(file_path);
                 File file = new File(file_path);
                 File[] Array_Of_files = file.listFiles();
+                Files = new ArrayList<>();
                 for (File f : Array_Of_files) {
                     if (f.isDirectory()) {
                         return;
                     } else if (f.isFile()) {
                         if (f.getName().endsWith(".ppt") || f.getName().endsWith(".pptx")) {
-                            System.out.println(f.getName());
+                            Files.add(f);
                         }
-
-
                     }
                 }
             }
@@ -95,7 +93,7 @@ public class MainUIForm extends JFrame {
                 super.mouseClicked(e);
                 Start_Stop_LBL.setIcon(new ImageIcon(getClass().getResource("/icons/button_stop.png")));
 
-                InetAddress ip= null;
+                InetAddress ip = null;
                 try {
                     ip = InetAddress.getLocalHost();
                 } catch (UnknownHostException unknownHostException) {
@@ -103,9 +101,9 @@ public class MainUIForm extends JFrame {
                 }
                 ServerIP_LBL.setText(String.valueOf(ip.getHostAddress()));
                 ServerName_LBL.setText(String.valueOf(ip.getHostName()));
+
             }
         });
-
 
 
         Minimize_LBL.addMouseListener(new MouseAdapter() {
