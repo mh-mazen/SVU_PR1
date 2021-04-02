@@ -1,7 +1,5 @@
 package DesktopAppUIPKG;
 
-import com.sun.security.ntlm.Server;
-
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -9,6 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -29,14 +28,17 @@ public class MainUIForm extends JFrame {
     private JLabel Exit_LBL;
     private JLabel Browse_LBL;
     private JLabel Start_Stop_LBL;
-    private JTextArea Logs_TXT;
     private JLabel Minimize_LBL;
     private JLabel ServerIP_LBL;
     private JLabel Port_LBL;
+    private JTextArea Logs_TXT;
     private JLabel Status_LBL;
     private JLabel LastCommand_LBL;
     private JLabel ServerName_LBL;
     public static List<File> Files;
+    private Thread serverThread;
+    private Server server;
+    private boolean isStarted;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -51,6 +53,7 @@ public class MainUIForm extends JFrame {
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 
+        MainUIForm mainForm = this;
 
         Exit_LBL.addMouseListener(new MouseAdapter() {
             @Override
@@ -75,12 +78,14 @@ public class MainUIForm extends JFrame {
                 File file = new File(file_path);
                 File[] Array_Of_files = file.listFiles();
                 Files = new ArrayList<>();
+                appendLog("Folder Selected, Powerpoint files found: ");
                 for (File f : Array_Of_files) {
                     if (f.isDirectory()) {
                         return;
                     } else if (f.isFile()) {
                         if (f.getName().endsWith(".ppt") || f.getName().endsWith(".pptx")) {
                             Files.add(f);
+                            appendLog(f.getName());
                         }
                     }
                 }
@@ -91,7 +96,11 @@ public class MainUIForm extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Start_Stop_LBL.setIcon(new ImageIcon(getClass().getResource("/icons/button_stop.png")));
+                appendLog("starting...");
+                if (!isStarted)
+                    Start_Stop_LBL.setIcon(new ImageIcon(getClass().getResource("/Icons/button_stop.png")));
+                else
+                    Start_Stop_LBL.setIcon(new ImageIcon(getClass().getResource("/Icons/button_start.png")));
 
                 InetAddress ip = null;
                 try {
@@ -99,9 +108,31 @@ public class MainUIForm extends JFrame {
                 } catch (UnknownHostException unknownHostException) {
                     unknownHostException.printStackTrace();
                 }
-                ServerIP_LBL.setText(String.valueOf(ip.getHostAddress()));
-                ServerName_LBL.setText(String.valueOf(ip.getHostName()));
 
+                if (!isStarted) {
+                    isStarted = true;
+
+                    server = new Server();
+                    server.setForm(mainForm);
+                    serverThread = new Thread(server);
+                    serverThread.start();
+                    ServerIP_LBL.setText(String.valueOf(ip.getHostAddress()));
+                    ServerName_LBL.setText(String.valueOf(ip.getHostName()));
+                    Port_LBL.setText("6666");
+                    Status_LBL.setText("Waiting");
+
+                } else {
+                    isStarted = false;
+                    ServerIP_LBL.setText("");
+                    ServerName_LBL.setText("");
+                    Port_LBL.setText("");
+                    Status_LBL.setText("");
+                    try {
+                        server.stop();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
             }
         });
 
@@ -118,5 +149,15 @@ public class MainUIForm extends JFrame {
 
     }
 
+    public void setStatus(String status) {
+        Status_LBL.setText(status);
+    }
 
+    public void setLastCommand(String command) {
+        LastCommand_LBL.setText(command);
+    }
+
+    public void appendLog(String log) {
+        Logs_TXT.append("\n- " + log);
+    }
 }
