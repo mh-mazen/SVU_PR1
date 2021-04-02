@@ -86,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
         myView.setVisibility(View.INVISIBLE);
         myView.animate().translationY(1400).setDuration(500).start();
         isUp = false;
-        pptAdapter = new MenuAdapter(context, null, R.drawable.ic_microsoft_powerpoint);
+        List<RowItem> list = new ArrayList<RowItem>();
+        list.add(new RowItem("PowerPoint1", "ppt", "1"));
+        list.add(new RowItem("PowerPoint2", "pptx", "2"));
+        list.add(new RowItem("PowerPoint3", "ppt", "3"));
+
+        pptAdapter = new MenuAdapter(context, list, R.drawable.ic_microsoft_powerpoint);
         ImageButton prevButton = findViewById(R.id.prevButton);
         prevButton.setOnClickListener(v -> {
             if (client.isConnected()) {
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fileList = (ListView) findViewById(R.id.file_list);
+        fileList.setAdapter(pptAdapter);
         fileList.setOnItemClickListener((parent, view, position, id) -> {
             RowItem entry = (RowItem) pptAdapter.getItem(position);
             new handleCommand().execute("open_file|" + entry.value, client);
