@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -69,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
         context = this;
 
         currentPage = (TextView) findViewById(R.id.currentPage);
-        Shader textShader = new LinearGradient(0, 0, 0, 50,
-                new int[]{Color.parseColor("#415CFF"),
-                        Color.parseColor("#C125FF")},
-                new float[]{0, 1}, Shader.TileMode.CLAMP);
-        currentPage.getPaint().setShader(textShader);
+        /*Shader textShader = new LinearGradient(0, 0, 0, 50,
+                new int[]{Color.parseColor("#D881BA"),
+                        Color.parseColor("#7372D5")},
+                new float[]{0, 1}, Shader.TileMode.MIRROR);
+        currentPage.getPaint().setShader(textShader);*/
 
         builder = new AlertDialog.Builder(this);
         client = new Client();
@@ -87,11 +89,8 @@ public class MainActivity extends AppCompatActivity {
         myView.animate().translationY(1400).setDuration(500).start();
         isUp = false;
         List<RowItem> list = new ArrayList<RowItem>();
-        list.add(new RowItem("PowerPoint1", "ppt", "1"));
-        list.add(new RowItem("PowerPoint2", "pptx", "2"));
-        list.add(new RowItem("PowerPoint3", "ppt", "3"));
 
-        pptAdapter = new MenuAdapter(context, list, R.drawable.ic_microsoft_powerpoint);
+        pptAdapter = new MenuAdapter(context, list, R.drawable.powerpoint);
         ImageButton prevButton = findViewById(R.id.prevButton);
         prevButton.setOnClickListener(v -> {
             if (client.isConnected()) {
@@ -138,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_connect) {
             if (!connected) {
                 showDialog();
-                item.setIcon(R.drawable.ic_online);
+                item.setIcon(R.drawable.ic_link);
                 connected = true;
             } else {
-                item.setIcon(R.drawable.ic_offline);
+                item.setIcon(R.drawable.disconnected);
                 connected = false;
             }
         }
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         //Setting the title manually
         alert.setCustomTitle(dialog_title);
-        alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#AE150519")));
+        alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#BF4137D5")));
         alert.show();
         String currentIP = Utils.getIPAddress(true);
         TextView ipText = (TextView) alert.findViewById(R.id.ipTextView);
@@ -181,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 bar.setVisibility(View.VISIBLE);
                 TextView err = alert.findViewById(R.id.noServerError);
                 err.setVisibility(View.INVISIBLE);
-                serverAdapter = new MenuAdapter(context, null, R.drawable.ic_server);
+                serverAdapter = new MenuAdapter(context, null, R.drawable.imac_40px);
                 new getServerList().execute(currentIP, port.getText().toString(), alert, serverAdapter, client);
 
             }
@@ -379,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
                             String value = String.valueOf(i);
                             items.add(new RowItem(name, "PPT", value));
                         }
-                        pptAdapter = new MenuAdapter(context, items, R.drawable.ic_microsoft_powerpoint);
+                        pptAdapter = new MenuAdapter(context, items, R.drawable.powerpoint);
                         fileList.setAdapter(pptAdapter);
 
                         SwitchPPTListState();

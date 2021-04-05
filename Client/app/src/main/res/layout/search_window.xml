@@ -16,10 +16,10 @@
             android:layout_marginStart="5dip"
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
-            android:fontFamily="@font/monoton_regular"
+            android:fontFamily="monospace"
             android:gravity="fill"
             android:text="IP:"
-            android:textColor="#8E24AA"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -35,10 +35,10 @@
             android:layout_marginStart="5dip"
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
-            android:fontFamily="@font/monoton_regular"
+            android:fontFamily="@font/moongladedemobold"
             android:gravity="fill"
             android:text="Port:"
-            android:textColor="#8E24AA"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <EditText
@@ -46,9 +46,9 @@
             android:layout_width="0dip"
             android:layout_height="38dp"
             android:layout_weight="1"
-            android:backgroundTint="#8E24AA"
+            android:backgroundTint="@color/white"
             android:ems="15"
-            android:fontFamily="@font/hellodenverdisplayregular"
+            android:fontFamily="monospace"
             android:inputType="textPersonName"
             android:paddingLeft="10dip"
             android:paddingTop="2dip"
@@ -56,7 +56,7 @@
             android:paddingBottom="2dip"
             android:radius="5dip"
             android:text="6666"
-            android:textColor="#8E24AA"
+            android:textColor="@color/white"
             android:textSize="26dp" />
 
         <ImageButton
@@ -66,7 +66,7 @@
             android:layout_margin="10dp"
             android:layout_weight="0"
             android:adjustViewBounds="true"
-            android:background="@drawable/ic_search"
+            android:background="@drawable/magnifying_glass"
             android:contentDescription="@string/todo"
             android:onClick="searchServers"
             android:padding="0dp"
@@ -90,8 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/monoton_regular"
-            android:textColor="#8E24AA"
+            android:fontFamily="monospace"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:visibility="invisible" />
 
@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/monoton_regular"
+            android:fontFamily="@font/moongladedemobold"
             android:text="No Server Found!"
             android:textColor="#8E24AA"
             android:textSize="24sp"
@@ -154,10 +154,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:fontFamily="@font/hellodenverdisplayregular"
+            android:fontFamily="monospace"
             android:inputType="textPersonName"
             android:text="192.168.1.1:6666"
-            android:textColor="#8E24AA"
+            android:textColor="@color/white"
             android:textSize="26sp"/>
 
         <ImageButton
@@ -167,7 +167,7 @@
             android:layout_margin="10dp"
             android:layout_weight="0"
             android:adjustViewBounds="true"
-            android:background="@drawable/ic_double_right"
+            android:background="@drawable/connect_server"
             android:contentDescription="@string/todo"
             android:onClick="searchServers"
             android:padding="0dp"

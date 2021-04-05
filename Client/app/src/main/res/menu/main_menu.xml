@@ -4,13 +4,13 @@
     android:orientation="vertical">
     <item
         android:id="@+id/action_connect"
-        android:icon="@drawable/ic_offline"
+        android:icon="@drawable/disconnected"
         android:orderInCategory="100"
         android:title="@string/search"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_cart"
-        android:icon="@drawable/ic_microsoft_powerpoint"
+        android:icon="@drawable/ic_powerpoint"
         android:orderInCategory="100"
         android:title="@string/search"
         app:showAsAction="ifRoom" />

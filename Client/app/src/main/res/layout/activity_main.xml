@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#1DDA00FF" />
+        android:background="@drawable/background" />
 
     <include
         layout="@layout/controller"
@@ -22,13 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_alignParentBottom="true"
-        android:background="#FA2E2E2E"
+        android:background="@color/blue_base_A"
         android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:background="#34DA00FF" />
+
         <ListView
             android:id="@+id/file_list"
             android:layout_width="match_parent"
