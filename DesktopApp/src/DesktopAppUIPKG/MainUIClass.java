@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.*;
 import java.text.MessageFormat;
+import java.util.concurrent.TimeUnit;
 
 class Server implements Runnable {
     private ServerSocket serverSocket;
@@ -33,7 +34,7 @@ class Server implements Runnable {
                         form.setLastCommand("Open File");
                         form.appendLog("Open File");
                         int Id = Integer.parseInt(greeting.split("\\|")[1]);
-                        open(MainUIForm.Files.get(Id).getAbsolutePath());
+                        open(MainUIForm.Files.get(Id).getAbsolutePath(),r);
                         out.println("hello client " + count);
                     } else if (greeting.contains("move_mouse")) {
                         form.setLastCommand("Move Mouse");
@@ -41,6 +42,7 @@ class Server implements Runnable {
                         String[] params = greeting.split("\\|");
                         float X = Float.parseFloat(params[1]);
                         float Y = Float.parseFloat(params[2]);
+
                         r.mouseMove((int) X, (int) Y);
                         out.println("hello client " + count);
                     } else
@@ -48,16 +50,16 @@ class Server implements Runnable {
                             case "prev_click":
                                 form.setLastCommand("Previous");
                                 form.appendLog("Previous");
-                                r.keyPress(KeyEvent.VK_RIGHT);
-                                r.keyRelease(KeyEvent.VK_RIGHT);
+                                r.keyPress(KeyEvent.VK_LEFT);
+                                r.keyRelease(KeyEvent.VK_LEFT);
 
                                 out.println("hello client " + count);
                                 break;
                             case "nxt_click":
                                 form.setLastCommand("Next");
                                 form.appendLog("Next");
-                                r.keyPress(KeyEvent.VK_LEFT);
-                                r.keyRelease(KeyEvent.VK_LEFT);
+                                r.keyPress(KeyEvent.VK_RIGHT);
+                                r.keyRelease(KeyEvent.VK_RIGHT);
                                 out.println("hello client " + count);
                                 break;
                             case "ppt_list":
@@ -75,7 +77,7 @@ class Server implements Runnable {
                 count++;
             }
             stop();
-        } catch (SocketException socketException) {
+        } catch (SocketException | InterruptedException socketException) {
             count = 0;
         }
     }
@@ -93,10 +95,13 @@ class Server implements Runnable {
         System.out.println("Server Stopped");
     }
 
-    private static void open(String targetFilePath) throws IOException {
+    private static void open(String targetFilePath,Robot r) throws IOException, InterruptedException {
         Desktop desktop = Desktop.getDesktop();
 
         desktop.open(new File(targetFilePath));
+        Thread.sleep(3000);
+        r.keyPress(KeyEvent.VK_F5);
+        r.keyRelease(KeyEvent.VK_F5);
     }
 
     public void run() {
@@ -113,11 +118,12 @@ class Server implements Runnable {
 public class MainUIClass {
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-
+        ImageIcon img = new ImageIcon(MainUIClass.class.getResource("/Icons/background.png"));
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(() -> {
-
             MainUIForm mainUIForm = new MainUIForm();
+
+            mainUIForm.pack();
             mainUIForm.setVisible(true);
         });
     }

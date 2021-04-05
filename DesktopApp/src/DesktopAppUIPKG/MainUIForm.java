@@ -20,48 +20,51 @@ public class MainUIForm extends JFrame {
     private JPanel BottomPanel;
     private JTextField FolderPath_TXT;
     private JLabel Cloudimg_LBL;
+    private JLabel PP_LBL;
     private JPanel TopSelectorPanel;
     private JPanel BottomRightPanel;
     private JPanel BottomLeftPanel;
     private JLabel FolderSelector_LBL;
-    private JLabel PP_LBL;
-    private JLabel Exit_LBL;
     private JLabel Browse_LBL;
     private JLabel Start_Stop_LBL;
-    private JLabel Minimize_LBL;
     private JLabel ServerIP_LBL;
     private JLabel Port_LBL;
     private JTextArea Logs_TXT;
     private JLabel Status_LBL;
     private JLabel LastCommand_LBL;
     private JLabel ServerName_LBL;
+    private JScrollPane LogsPanel;
+    private JSplitPane BottomSPanel;
     public static List<File> Files;
     private Thread serverThread;
     private Server server;
     private boolean isStarted;
+    private MainUIForm mainForm;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
 
     public MainUIForm() {
-        add(RootPanel);
+
         setTitle("Server Application");
-        setSize(700, 500);
+        setSize(900, 500);
         setLocationRelativeTo(null);
-        //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        mainForm = this;
+        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/Icons/box.png"));
+        BackgroundPanel panel = new BackgroundPanel(backgroundImage.getImage(), BackgroundPanel.SCALED, 1.0f, 0.5f);
+        GradientPaint paint = new GradientPaint(0, 0, Color.decode("#DB3C8F"), 600, 0, Color.decode("#4137D6"));
+        panel.setPaint(paint);
+        TopPanel.setBackground(new Color(0, 0, 0, 125));
+        TopSelectorPanel.setBackground(new Color(0, 0, 0, 0));
+        BottomPanel.setBackground(new Color(0, 0, 0, 0));
+        BottomSPanel.setBackground(new Color(0, 0, 0, 0));
+        BottomLeftPanel.setBackground(new Color(0, 0, 0, 50));
+        BottomRightPanel.setBackground(new Color(0, 0, 0, 50));
+        Logs_TXT.setBackground(Color.decode("#4137D3"));
+        panel.add(RootPanel);
+        add(panel);
 
-        MainUIForm mainForm = this;
-
-        Exit_LBL.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                System.exit(0);
-            }
-        });
         Browse_LBL.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -133,16 +136,7 @@ public class MainUIForm extends JFrame {
                         ioException.printStackTrace();
                     }
                 }
-            }
-        });
-
-
-        Minimize_LBL.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                setState(Frame.ICONIFIED);
-                // To restore setState(Frame.NORMAL)
+                mainForm.repaint();
             }
         });
 
@@ -151,13 +145,17 @@ public class MainUIForm extends JFrame {
 
     public void setStatus(String status) {
         Status_LBL.setText(status);
+        mainForm.repaint();
     }
 
     public void setLastCommand(String command) {
         LastCommand_LBL.setText(command);
+        mainForm.repaint();
     }
 
     public void appendLog(String log) {
         Logs_TXT.append("\n- " + log);
+        mainForm.repaint();
     }
+
 }
