@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Powerpoint Controller</string>
+    <string name="search">Search</string>
+    <string name="connect" >Connect</string>
+    <string name="lt"><![CDATA[<]]></string>
+    <string name="gt"><![CDATA[>]]></string>
+    <string name="_1_3">1 / 3</string>
+    <string name="todo">TODO</string>
+    <string name="username" />
+    <string name="password" />
+    <string name="dialog_message">Hello</string>
+    <string name="dialog_title">Title</string>
+</resources>
